@@ -1,12 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
 
-# Inicializa a conta com saldo zero
+# Inicializa a conta com saldo zero e saques diários
 def get_conta():
     if 'conta' not in session:
-        session['conta'] = {'nome': '', 'saldo': 0.0}
+        session['conta'] = {'nome': '', 'saldo': 0.0, 'saques_diarios': []}
     return session['conta']
 
 @app.route('/', methods=['GET', 'POST'])
@@ -25,6 +26,8 @@ def index():
 @app.route('/principal', methods=['GET', 'POST'])
 def principal():
     conta = get_conta()
+    hoje = datetime.now().strftime('%Y-%m-%d')
+    
     if request.method == 'POST':
         valor = request.form.get('valor')
         operacao = request.form.get('operacao')
@@ -44,11 +47,19 @@ def principal():
             elif operacao == 'saque':
                 if valor <= 0:
                     flash('O valor do saque deve ser positivo.')
+                elif valor > 500:
+                    flash('O valor do saque não pode exceder R$ 500.')
                 elif valor > conta['saldo']:
                     flash('Saldo insuficiente para saque.')
                 else:
-                    conta['saldo'] -= valor
-                    flash('Saque realizado com sucesso.')
+                    # Verifica saques diários
+                    saques = [s for s in conta['saques_diarios'] if s['data'] == hoje]
+                    if len(saques) >= 3:
+                        flash('Limite diário de saques atingido.')
+                    else:
+                        conta['saldo'] -= valor
+                        conta['saques_diarios'].append({'data': hoje, 'valor': valor})
+                        flash('Saque realizado com sucesso.')
         except ValueError:
             flash('O valor informado deve ser numérico.')
         
