@@ -2,6 +2,10 @@
 
 Este projeto é um sistema bancário simples desenvolvido com Flask. Ele permite aos usuários criar uma conta, realizar depósitos e saques, e exibe informações sobre a conta, como saldo e limites de saque.
 
+Abaixo está uma captura de tela da aplicação:
+
+![Captura de Tela da Aplicação](arquivos/imagem-banco.png)
+
 ## Funcionalidades
 
 - **Cadastro de Usuário:** Os usuários podem inserir seu nome para criar uma conta.
