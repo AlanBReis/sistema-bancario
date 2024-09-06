@@ -21,3 +21,52 @@ Certifique-se de ter o Python 3.6 ou superior instalado em seu sistema. Além di
 
 ```bash
 pip install -r requirements.txt
+```
+
+## Configuração e Execução
+1. Clone o Repositório:
+
+```bash
+Copiar código
+git clone https://github.com/seu-usuario/seu-repositorio.git
+cd seu-repositorio
+```
+
+2. Instale as Dependências:
+
+```bash
+Copiar código
+pip install -r requirements.txt
+```
+
+3. Execute a Aplicação:
+
+```bash
+python app.py
+```
+
+A aplicação estará disponível em http://127.0.0.1:5000/.
+
+## Estrutura do Projeto
+`app.py`: Arquivo principal da aplicação Flask, que contém as rotas e lógica do sistema bancário.
+`templates/index.html`: Página inicial onde o usuário insere seu nome.
+`templates/principal.html`: Página principal onde o usuário realiza operações bancárias.
+`requirements.txt`: Lista de dependências do projeto.
+
+## Contribuições
+Contribuições são bem-vindas! Se você encontrar algum problema ou tiver sugestões para melhorias, sinta-se à vontade para abrir um issue ou enviar um pull request.
+
+## Licença
+Este projeto é licenciado sob a MIT License.
+
+## Contato
+Se você tiver alguma dúvida, entre em contato com alanzit0xz@gmail.com
+
+
+
+
+
+
+
+
+
